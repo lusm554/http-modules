@@ -17,7 +17,7 @@ const request = http.request(options, (res) => {
     let body = '';
     res.on('data', (chunk) => { body+= '' + chunk })
     res.on('end', () => { console.log('respons', body) })
-    res.on('close', () => console.log('close') )
+    res.on('close', () => console.log('connection close') )
 })
 
 request.end(someData)
