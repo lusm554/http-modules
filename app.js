@@ -32,7 +32,12 @@ app.delete('/products', (req, res) => {
 })
 
 app.put('/products', (req, res) => {
-    
+    let upadatedProduct;
+
+    products = products.map(p => {
+        return p.id === req.body.id ? 
+            {name: req.boby.name, id: req.body.id} : p
+    })
 })
 
 app.listen(3000)
