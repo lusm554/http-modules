@@ -1,6 +1,10 @@
 const http = require('http')
 
-const someData = {name: 'Milk', id: 4}
+const args = process.argv.slice(2)
+
+const someData = {
+    id: +args[0] || 1
+}
 
 const justJsonData = JSON.stringify(someData)
 

@@ -1,6 +1,11 @@
 const http = require('http')
 
-const someData = JSON.stringify({name: 'notMilk', id: 4})
+const args = process.argv.slice(2)
+
+const someData = JSON.stringify({
+    name: args[0] || 'someName',
+    id: +args[1] || 1
+})
 
 const options = {
     hostname: '127.0.0.1',

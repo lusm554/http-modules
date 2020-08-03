@@ -1,6 +1,10 @@
 const http = require('http')
 
-const someData = JSON.stringify({name: 'apple'})
+const args = process.argv.slice(2)
+
+const someData = JSON.stringify({
+    name: args[0] || 'someName'
+})
 
 const options = {
     hostname: '127.0.0.1',
