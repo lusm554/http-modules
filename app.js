@@ -7,7 +7,7 @@ app.use(bodyParser.json())
 let products = require('./products.json');
 
 app.get('/products', (req, res, next) => {
-
+    next()
 })
 
 app.get('/products', (req, res) => {
