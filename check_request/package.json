@@ -1,0 +1,15 @@
+{
+  "name": "check_request",
+  "version": "1.0.0",
+  "description": "",
+  "main": "client-get.js",
+  "scripts": {
+    "get": "node client-get.js",
+    "post": "node client-post.js",
+    "put": "node client-put.js",
+    "delete": "node client-delete.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
