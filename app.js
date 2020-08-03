@@ -27,8 +27,15 @@ app.post('/products', (req, res, next) => {
     res.json(product)
 })
 
-app.delete('/products', (req, res) => {
+app.delete('/products/:id', (req, res) => {
+    let { id } = req.params
 
+    let deletedProduct = products.find(p => p.id === Number(id))
+    products = products.filter(p => p.id !== deletedProduct.id)
+
+    fs.writeFileSync(path.join(__dirname, 'products.json'), JSON.stringify(products, null, 2))
+
+    res.json(deletedProduct)
 })
 
 app.put('/products', (req, res) => {
