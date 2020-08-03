@@ -15,11 +15,11 @@ app.get('/products', (req, res) => {
 
 // Add product to json file
 app.post('/products', (req, res, next) => {
-    let products = require('./products.json');
+    let products = require('./products.json')
 
-    let product = {name: req.body.name, id: products.length + 1};
+    let product = {name: req.body.name, id: products.length + 1}
 
-    products.push(product);
+    products.push(product)
 
 
     fs.writeFileSync(path.join(__dirname, 'products.json'), JSON.stringify(products, null, 2))
@@ -32,12 +32,16 @@ app.delete('/products', (req, res) => {
 })
 
 app.put('/products', (req, res) => {
-    let upadatedProduct;
+    let updatedProduct = req.body
 
     products = products.map(p => {
-        return p.id === req.body.id ? 
-            {name: req.boby.name, id: req.body.id} : p
+        return p.id === updatedProduct.id ? 
+            {name: updatedProduct.name, id: updatedProduct.id} : p;
     })
+    
+    fs.writeFileSync(path.join(__dirname, 'products.json'), JSON.stringify(products, null, 2))
+
+    res.json(updatedProduct)
 })
 
 app.listen(3000)
