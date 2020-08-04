@@ -17,7 +17,7 @@ function updateProducts(products) {
     fs.writeFileSync(path.join(__dirname, 'products.json'), JSON.stringify(products, null, 2))
 }
 
-app.get('/products', (req, res) => {
+app.get('/products', require('./middlewareAuth'), (req, res) => {
     const { page, pageSize } = req.query
     
     if(page &&  pageSize) {
