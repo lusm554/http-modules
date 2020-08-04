@@ -9,20 +9,25 @@ app.use(bodyParser.json())
 
 let products = require('./products.json');
 
+/**
+ * Update products.json .
+ * @param {array} products 
+ */
+function updateProducts(products) {
+    fs.writeFileSync(path.join(__dirname, 'products.json'), JSON.stringify(products, null, 2))
+}
+
 app.get('/products', (req, res) => {
     res.json(products)
 })
 
-// Add product to json file
-app.post('/products', (req, res, next) => {
+app.post('/products', (req, res) => {
     let products = require('./products.json')
 
     let product = {name: req.body.name, id: products.length + 1}
-
     products.push(product)
 
-
-    fs.writeFileSync(path.join(__dirname, 'products.json'), JSON.stringify(products, null, 2))
+    updateProducts(products)
 
     res.json(product)
 })
@@ -33,7 +38,7 @@ app.delete('/products/:id', (req, res) => {
     let deletedProduct = products.find(p => p.id === Number(id))
     products = products.filter(p => p.id !== deletedProduct.id)
 
-    fs.writeFileSync(path.join(__dirname, 'products.json'), JSON.stringify(products, null, 2))
+    updateProducts(products)
 
     res.json(deletedProduct)
 })
@@ -46,7 +51,7 @@ app.put('/products', (req, res) => {
             {name: updatedProduct.name, id: updatedProduct.id} : p;
     })
     
-    fs.writeFileSync(path.join(__dirname, 'products.json'), JSON.stringify(products, null, 2))
+    updateProducts(products)
 
     res.json(updatedProduct)
 })
