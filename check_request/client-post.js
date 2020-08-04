@@ -2,6 +2,10 @@ const http = require('http')
 
 const args = process.argv.slice(2)
 
+/**
+ * Params from npm command.
+ * @param {string} - name - name of the product. 
+ */
 const someData = JSON.stringify({
     name: args[0] || 'someName'
 })

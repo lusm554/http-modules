@@ -2,6 +2,10 @@ const http = require('http')
 
 const args = process.argv.slice(2)
 
+/**
+ * Params from npm command.
+ * @param {number} id - id of the product.
+ */
 const someData = {
     id: +args[0] || 1
 }
