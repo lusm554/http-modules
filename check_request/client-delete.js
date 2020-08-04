@@ -1,4 +1,5 @@
 const http = require('http')
+const prettyJson = require('./prettyJson')
 
 const args = process.argv.slice(2)
 
@@ -26,7 +27,7 @@ const options = {
 const request = http.request(options, (res) => {
     let body = ''
     res.on('data', (chunk) => { body+= chunk })
-    res.on('end', () => { console.log('respons', body) })
+    res.on('end', () => { console.log('respons', prettyJson(body)) })
     res.on('close', () => { console.log('connection close') })
 })
 

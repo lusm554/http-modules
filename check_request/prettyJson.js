@@ -1,5 +1,5 @@
 /**
- * Pretty print JSON in the command line
+ * Pretty print JSON in the command line.
  * @param {string} - json
  */
 function prettyJson(json) {
