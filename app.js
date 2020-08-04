@@ -18,7 +18,16 @@ function updateProducts(products) {
 }
 
 app.get('/products', (req, res) => {
-    res.json(products)
+    const { page, pageSize } = req.query
+    
+    if(page &&  pageSize) {
+        const start = (+page - 1) * pageSize
+        const end = +start + pageSize
+        res.json(products.slice(start, end))
+    }
+    else {
+        res.json(products)
+    }
 })
 
 app.post('/products', (req, res) => {
